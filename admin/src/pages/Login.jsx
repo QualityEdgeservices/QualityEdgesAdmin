@@ -39,8 +39,8 @@ const Login = () => {
     if (result.success) {
       // Redirect to the page they tried to visit or dashboard
       //   set token
-      localStorage.setItem('token', result.token);
-      localStorage.setItem('user', JSON.stringify(result.user));
+      // localStorage.setItem('token', result.token);
+      // localStorage.setItem('user', JSON.stringify(result.user));
       navigate(from, { replace: true });
     } else {
       setError(result.message);

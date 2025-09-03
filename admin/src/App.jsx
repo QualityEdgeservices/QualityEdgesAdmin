@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider, useAuth  } from "./context/AuthContext.jsx";
+import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import DebugAuth from "./components/DebugAuth.jsx";
 import Settings from "./pages/Settings.jsx";
 import Support from "./pages/Support.jsx";
@@ -31,7 +31,7 @@ function Layout({ children }) {
 
 function AppContent() {
   const { loading } = useAuth();
-const { user, token } = useAuth();
+  const { user, token } = useAuth();
 
   console.log("User in App:", user);
   console.log("Token in App:", token);
@@ -41,10 +41,7 @@ const { user, token } = useAuth();
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
       </div>
     );
-
   }
-
-
 
   return (
     <Router>
@@ -54,130 +51,74 @@ const { user, token } = useAuth();
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Protected Routes with Layout */}
-        {/* <Route
+        <Route
           path="/"
           element={
             <PrivateRoute>
               <Layout>
                 <Dashboard />
               </Layout>
-             </PrivateRoute>
+            </PrivateRoute>
           }
         />
         <Route
           path="/users"
           element={
-            <PrivateRoute>
-              <Layout>
-                <Users />
-              </Layout>
-            </PrivateRoute>
+            <Layout>
+              <Users />
+            </Layout>
           }
         />
         <Route
           path="/exams"
           element={
-            <PrivateRoute>
-              <Layout>
-                <Exams />
-              </Layout>
-            </PrivateRoute>
+            <Layout>
+              <Exams />
+            </Layout>
           }
         />
         <Route
           path="/tests"
           element={
-            <PrivateRoute>
-              <Layout>
-                <Tests />
-              </Layout>
-            </PrivateRoute>
+            <Layout>
+              <Tests />
+            </Layout>
           }
         />
         <Route
           path="/statistics"
           element={
-            <PrivateRoute>
-              <Layout>
-                <Statistics />
-              </Layout>
-            </PrivateRoute>
+            <Layout>
+              <Statistics />
+            </Layout>
           }
-        /> */}
-
-
+        />
 
         <Route
-  path="/"
-  element={
-    // <PrivateRoute>
-      <Layout>
-        <Dashboard />
-      </Layout>
-    // </PrivateRoute>
-  }
-/>
-<Route
-  path="/users"
-  element={
-    <Layout>
-      <Users />
-    </Layout>
-  }
-/>
-<Route
-  path="/exams"
-  element={
-    <Layout>
-      <Exams />
-    </Layout>
-  }
-/>
-<Route
-  path="/tests"
-  element={
-    <Layout>
-      <Tests />
-    </Layout>
-  }
-/>
-<Route
-  path="/statistics"
-  element={
-    <Layout>
-      <Statistics />
-    </Layout>
-  }
-/>
+          path="/settings"
+          element={
+            <Layout>
+              <Settings />
+            </Layout>
+          }
+        />
 
-<Route
-  path="/settings"
-  element={
-    <Layout>
-      <Settings />
-    </Layout>
-  }
-/>
+        <Route
+          path="/support"
+          element={
+            <Layout>
+              <Support />
+            </Layout>
+          }
+        />
 
-<Route
-  path="/support"
-  element={
-    <Layout>
-      <Support />
-    </Layout>
-  }
-/>
-
-{/* Catch-all → Dashboard */}
-<Route
-  path="*"
-  element={
-    // <PrivateRoute>
-              <Layout>
-                <Dashboard />
-              </Layout>
-            // </PrivateRoute>
+        {/* Catch-all → Dashboard */}
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <Login />
+            </Layout>
           }
         />
       </Routes>

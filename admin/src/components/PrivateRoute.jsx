@@ -16,7 +16,7 @@ export default function PrivateRoute({ children }) {
     );
   }
 
-  console.log(user.email, "user in private")
+  console.log(user?.email, "user in private")
 
   // If not authenticated, redirect to login with return url
   if (!user) {

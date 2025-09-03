@@ -34,23 +34,47 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  // const fetchUser = async () => {
+  //   try {
+  //     const response = await api.get("/auth/me");
+  //     const userData = response.data;
+  //     setUser(userData);
+  //     localStorage.setItem("user", JSON.stringify(userData));
+  //   } catch (error) {
+  //     console.error("Failed to fetch user:", error);
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("user");
+  //     delete api.defaults.headers.common["Authorization"];
+  //     setUser(null);
+  //     setToken(null);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const fetchUser = async () => {
-    try {
-      const response = await api.get("/auth/me");
-      const userData = response.data;
-      setUser(userData);
-      localStorage.setItem("user", JSON.stringify(userData));
-    } catch (error) {
-      console.error("Failed to fetch user:", error);
+  try {
+    const response = await api.get("/auth/me");
+    const userData = response.data;
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+
+    // instead of clearing everything immediately:
+    // only clear if it's definitely unauthorized
+    if (error.response?.status === 401) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       delete api.defaults.headers.common["Authorization"];
       setUser(null);
       setToken(null);
-    } finally {
-      setLoading(false);
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const login = async (credentials) => {
     try {

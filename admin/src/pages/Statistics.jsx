@@ -534,7 +534,7 @@ const Statistics = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-teal-50 rounded-lg p-6 mb-8">
+      {/* <div className="bg-teal-50 rounded-lg p-6 mb-8">
         <h3 className="text-lg font-medium text-teal-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           <button 
@@ -560,7 +560,7 @@ const Statistics = () => {
             Generate Insights
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
